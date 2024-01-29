@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Details</title>
+</head>
+<body>
+<a href="/EcommerceStore/product">Back</a>
+<h1>Product Details</h1>
+
+<p th:text="'Product ID: ' + ${product.product_id}"></p>
+<p th:text="'Product Name: ' + ${product.product_name}"></p>
+<p th:text="'Quantity: ' + ${product.product_quantity}"></p>
+<p th:text="'Image: ' + ${product.product_image}"></p>
+<p th:text="'Price: ' + ${product.product_price}"></p>
+<p th:text="'Rating: ' + ${product.rating}"></p>
+<p th:text="'Brand: ' + ${product.productBrand}"></p>
+
+</body>
+</html>
