@@ -21,7 +21,8 @@ public class Product {
   private int product_id;
   private String product_name;
   private int product_quantity;
-  private int product_price;
+  @Column(name="product_price")
+  private int productPrice;
   private String product_image;
   private int rating;
   @Column(name="product_brand")
