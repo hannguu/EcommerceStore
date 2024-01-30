@@ -13,4 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
   List<Product> findProductByProductType(String productType);
   List<Product> findProductsByProductBrand(String productBrand);
+  List<Product> findProductsByProductPriceBetweenAndProductType(int start_price, int end_price, String productType);
 }

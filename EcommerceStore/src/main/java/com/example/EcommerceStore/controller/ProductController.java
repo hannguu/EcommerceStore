@@ -21,6 +21,7 @@ import com.example.EcommerceStore.repository.ProductRepository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 @RequestMapping("/EcommerceStore")
 @Controller
 public class ProductController {
@@ -41,7 +42,8 @@ public class ProductController {
       } else if (principal instanceof OAuth2User oAuth2User) {
         // Handle OAuth2User or specific user types (like DefaultOidcUser)
         Map<String, Object> attributes = oAuth2User.getAttributes();
-        model.addAttribute("user_email", attributes.get("email")); // replace with the actual attribute
+        model.addAttribute("user_email",
+            attributes.get("email")); // replace with the actual attribute
       } else {
         return "error";
       }
@@ -78,13 +80,23 @@ public class ProductController {
     model.addAttribute("productType", product_type);
     return "productFilter";
   }
+
   @GetMapping("/productBrandFilter/{product_brand}")
-  public String findByProductBrand(@PathVariable("product_brand") String product_brand, Model model)
-  {
+  public String findByProductBrand(@PathVariable("product_brand") String product_brand,
+      Model model) {
     List<Product> listProduct = productRepository.findProductsByProductBrand(product_brand);
     model.addAttribute("listProduct", listProduct);
     model.addAttribute("brand", product_brand);
     return "productFilter";
   }
 
+  @GetMapping("/productFilter")
+  public String findProductByPrice(@RequestParam("start_price") int start_price,
+      @RequestParam("end_price") int end_price, @RequestParam("productType")String productType,
+      Model model) {
+    List<Product> listProduct = productRepository.findProductsByProductPriceBetweenAndProductType(start_price,
+        end_price,productType);
+    model.addAttribute("listProduct", listProduct);
+    return "productFilter";
+  }
 }
