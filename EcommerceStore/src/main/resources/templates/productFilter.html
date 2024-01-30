@@ -100,6 +100,7 @@
     <div class="left">
       <div class="background-white">
         <h2 class="title-filter">Bo Loc San Pham</h2>
+        <h2 th:text="${productType}"></h2>
         <div class="box-filter">
           <div class="item-filter hidden">
             <div class="title-filter d-flex align-items space-between">
@@ -113,7 +114,7 @@
                 <div class="icon-check"
                      th:attr="onclick='|location.href=\'/EcommerceStore/productFilter?start_price=0&amp;end_price=8000000\'|'"></div>
                 <a th:href="@{/EcommerceStore/productFilter(start_price=0,
-                end_price=8000000)}"
+                end_price=8000000, productType=${productType})}"
                    class="filter-right d-flex align-items space-between">
                   <span>Dưới 8 triệu</span>
                   <span class="total-attr"></span>
@@ -124,12 +125,12 @@
 
                 <div class="icon-check"
                      th:attr="onclick='|location.href=\'/EcommerceStore/productFilter?start_price=8000000&amp;end_price=11000000\'|'"></div>
-                <a th:href="@{/EcommerceStore/productFilter(start_price=8000000,
-                end_price=11000000)}"
+                <a th:href="@{/EcommerceStore/productFilter(start_price=8000000, end_price=11000000, productType=${productType})}"
                    class="filter-right d-flex align-items space-between">
                   <span>8 triệu - 11 triệu</span>
                   <span class="total-attr"></span>
                 </a>
+
               </div>
 
               <div class="item-attr d-flex align-items">
@@ -138,7 +139,7 @@
                      th:attr="onclick='|location.href=\'/EcommerceStore/productFilter?start_price=11000000&amp;end_price=15000000\'|'"></div>
 
                 <a th:href="@{/EcommerceStore/productFilter(start_price=11000000,
-                end_price=15000000)}"
+                end_price=15000000, productType=${productType})}"
                    class="filter-right d-flex align-items space-between">
                   <span>11 triệu - 15 triệu</span>
                   <span class="total-attr"></span>
@@ -150,7 +151,7 @@
                 <div class="icon-check"
                      th:attr="onclick='|location.href=\'/EcommerceStore/productFilter?start_price=15000000&amp;end_price=20000000\'|'"></div>
                 <a th:href="@{/EcommerceStore/productFilter(start_price=15000000,
-                end_price=20000000)}"
+                end_price=20000000, productType=${productType})}"
                    class="filter-right d-flex align-items space-between">
                   <span>15 triệu - 20 triệu</span>
                   <span class="total-attr"></span>
@@ -161,7 +162,7 @@
                 <div class="icon-check"
                      th:attr="onclick='|location.href=\'/EcommerceStore/productFilter?start_price=20000000&amp;end_price=25000000\'|'"></div>
                 <a th:href="@{/EcommerceStore/productFilter(start_price=20000000,
-                end_price=25000000)}"
+                end_price=25000000, productType=${productType})}"
                    class="filter-right d-flex align-items space-between">
                   <span>20 triệu - 25 triệu</span>
                   <span class="total-attr"></span>
@@ -173,7 +174,7 @@
                 <div class="icon-check"
                      th:attr="onclick='|location.href=\'/EcommerceStore/productFilter?start_price=25000000&amp;end_price=30000000\'|'"></div>
                 <a th:href="@{/EcommerceStore/productFilter(start_price=25000000,
-                end_price=30000000)}"
+                end_price=30000000, productType=${productType})}"
                    class="filter-right d-flex align-items space-between">
                   <span>25 triệu - 30 triệu</span>
                   <span class="total-attr"></span>
@@ -185,7 +186,7 @@
                 <div class="icon-check"
                      th:attr="onclick='|location.href=\'/EcommerceStore/productFilter?start_price=30000000&amp;end_price=50000000\'|'"></div>
                 <a th:href="@{/EcommerceStore/productFilter(start_price=30000000,
-                end_price=50000000)}"
+                end_price=50000000, productType=${productType})}"
                    class="filter-right d-flex align-items space-between">
                   <span>30 triệu - 50 triệu</span>
                   <span class="total-attr"></span>
@@ -197,7 +198,7 @@
                 <div class="icon-check"
                      th:attr="onclick='|location.href=\'/EcommerceStore/productFilter?start_price=50000000&amp;end_price=70000000\'|'"></div>
                 <a th:href="@{/EcommerceStore/productFilter(start_price=50000000,
-                 end_price=70000000)}"
+                 end_price=70000000, productType=${productType})}"
                    class="filter-right d-flex align-items space-between">
                   <span>50 triệu - 70 triệu</span>
                   <span class="total-attr"></span>
@@ -210,7 +211,7 @@
                 <div class="icon-check"
                      th:attr="onclick='|location.href=\'/EcommerceStore/productFilter?start_price=70000000&amp;end_price=85000000\'|'"></div>
                 <a th:href="@{/EcommerceStore/productFilter(start_price=70000000,
-                end_price=85000000)}"
+                end_price=85000000, productType=${productType})}"
                    class="filter-right d-flex align-items space-between">
                   <span>70 triệu - 80 triệu</span>
                   <span class="total-attr"></span>
@@ -222,7 +223,7 @@
                 <div class="icon-check"
                      th:attr="onclick='|location.href=\'/EcommerceStore/productFilter?start_price=80000000&amp;end_price=10000000000000000\'|'"></div>
                 <a th:href="@{/EcommerceStore/productFilter(start_price=80000000,
-                end_price=10000000000000000000000000)}"
+                end_price=10000000000000000000000000, productType=${productType})}"
                    class="filter-right d-flex align-items space-between">
                   <span>Trên 80 triệu</span>
                   <span class="total-attr"></span>

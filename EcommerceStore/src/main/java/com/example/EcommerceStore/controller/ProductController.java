@@ -86,7 +86,7 @@ public class ProductController {
       Model model) {
     List<Product> listProduct = productRepository.findProductsByProductBrand(product_brand);
     model.addAttribute("listProduct", listProduct);
-    model.addAttribute("brand", product_brand);
+    model.addAttribute("productType", "Laptop");
     return "productFilter";
   }
 
@@ -97,6 +97,7 @@ public class ProductController {
     List<Product> listProduct = productRepository.findProductsByProductPriceBetweenAndProductType(start_price,
         end_price,productType);
     model.addAttribute("listProduct", listProduct);
+    model.addAttribute("productType",productType);
     return "productFilter";
   }
 }
