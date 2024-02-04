@@ -55,7 +55,13 @@
 
 
             <li>
-              <i class="fa-solid fa-cart-shopping"></i> <span>0</span>
+              <i class="fa-solid fa-cart-shopping">
+                <a th:if="${userRepository != null and userRepository.findByUserEmail(user_email) != null}"
+                   th:href="@{/EcommerceStore/cart/{user_id}(user_id=${userRepository.findByUserEmail(user_email).user_id})}">
+                Cart
+                </a>
+              </i> <span>0</span>
+
             </li>
           </ul>
         </div>
@@ -187,7 +193,7 @@
             <div class="hot-product-main-item-content">
               <h1>
                 <a th:text="${product.product_name}"
-                   th:href="@{/EcommerceStore/productDetails/{product_id}(product_id=${product.product_id})}"></a>
+                   th:href="@{/EcommerceStore/productDetails/{productId}(productId=${product.productId})}"></a>
               </h1>
 
             </div>

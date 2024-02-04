@@ -28,7 +28,8 @@ public class ProductController {
 
   @Autowired
   private ProductRepository productRepository;
-
+  @Autowired
+  private UserRepository userRepository;
 
   @GetMapping("/product")
   public String getProduct(Authentication authentication, Model model) {
@@ -39,11 +40,19 @@ public class ProductController {
         // Standard UserDetails case
         String email = userDetails.getUsername();
         model.addAttribute("user_email", email);
+        User user = userRepository.findByUserEmail(email);
+        model.addAttribute("userRepository", userRepository);
+        int user_id = user.getUser_id();
+        model.addAttribute("user_id", user_id);
       } else if (principal instanceof OAuth2User oAuth2User) {
-        // Handle OAuth2User or specific user types (like DefaultOidcUser)
+        // get user_email when sign in with google or facebook
         Map<String, Object> attributes = oAuth2User.getAttributes();
         model.addAttribute("user_email",
-            attributes.get("email")); // replace with the actual attribute
+            attributes.get("email"));
+
+        model.addAttribute("userRepository", userRepository);
+
+
       } else {
         return "error";
       }
@@ -60,11 +69,35 @@ public class ProductController {
     return "homepage";
   }
 
-  @GetMapping("/productDetails/{product_id}")
+  @GetMapping("/productDetails/{productId}")
 
-  public String getProductDetails(@PathVariable("product_id") Integer product_id, Model model) {
+  public String getProductDetails(@PathVariable("productId") Integer productId,
+      Authentication authentication, Model model) {
+    if (authentication != null && authentication.isAuthenticated()) {
+      Object principal = authentication.getPrincipal();
 
-    Optional<Product> optionalProduct = productRepository.findById(product_id);
+      if (principal instanceof UserDetails userDetails) {
+        // Standard UserDetails case
+        String email = userDetails.getUsername();
+        model.addAttribute("user_email", email);
+        User user = userRepository.findByUserEmail(email);
+        model.addAttribute("userRepository", userRepository);
+        int user_id = user.getUser_id();
+        model.addAttribute("user_id", user_id);
+      } else if (principal instanceof OAuth2User oAuth2User) {
+        // get user_email when sign in with google or facebook
+        Map<String, Object> attributes = oAuth2User.getAttributes();
+        model.addAttribute("user_email",
+            attributes.get("email"));
+        model.addAttribute("userRepository", userRepository);
+
+
+      } else {
+        return "error";
+      }
+
+    }
+    Optional<Product> optionalProduct = productRepository.findById(productId);
     if (optionalProduct.isPresent()) {
       model.addAttribute("product", optionalProduct.get());
       return "productDetails";
@@ -92,12 +125,13 @@ public class ProductController {
 
   @GetMapping("/productFilter")
   public String findProductByPrice(@RequestParam("start_price") int start_price,
-      @RequestParam("end_price") int end_price, @RequestParam("productType")String productType,
+      @RequestParam("end_price") int end_price, @RequestParam("productType") String productType,
       Model model) {
-    List<Product> listProduct = productRepository.findProductsByProductPriceBetweenAndProductType(start_price,
-        end_price,productType);
+    List<Product> listProduct = productRepository.findProductsByProductPriceBetweenAndProductType(
+        start_price,
+        end_price, productType);
     model.addAttribute("listProduct", listProduct);
-    model.addAttribute("productType",productType);
+    model.addAttribute("productType", productType);
     return "productFilter";
   }
 }

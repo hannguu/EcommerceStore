@@ -7,14 +7,19 @@
 <body>
 <a href="/EcommerceStore/product">Back</a>
 <h1>Product Details</h1>
+<form th:action="@{/EcommerceStore/cart/add}" method="POST">
+  <input type="hidden" name="product_id" id="product_id" th:value="${productId}">
+  <input type="hidden" name="user_id" id="user_id"
+         th:value="${userRepository.findByUserEmail(user_email).getUser_id()}">
 
-<p th:text="'Product ID: ' + ${product.product_id}"></p>
-<p th:text="'Product Name: ' + ${product.product_name}"></p>
-<p th:text="'Quantity: ' + ${product.product_quantity}"></p>
-<p th:text="'Image: ' + ${product.product_image}"></p>
-<p th:text="'Price: ' + ${product.productPrice}"></p>
-<p th:text="'Rating: ' + ${product.rating}"></p>
-<p th:text="'Brand: ' + ${product.productBrand}"></p>
-
+  <p th:text="'Product ID: ' + ${product.productId}"></p>
+  <p th:text="'Product Name: ' + ${product.product_name}"></p>
+  <p th:text="'Quantity: ' + ${product.product_quantity}"></p>
+  <p th:text="'Image: ' + ${product.product_image}"></p>
+  <p th:text="'Price: ' + ${product.productPrice}"></p>
+  <p th:text="'Rating: ' + ${product.rating}"></p>
+  <p th:text="'Brand: ' + ${product.productBrand}"></p>
+  <button type="submit">Add to cart</button>
+</form>
 </body>
 </html>
